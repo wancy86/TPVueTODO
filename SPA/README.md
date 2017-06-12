@@ -1,4 +1,4 @@
-# public
+# spa
 
 > A Vue.js project
 

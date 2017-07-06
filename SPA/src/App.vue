@@ -1,7 +1,8 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+  <div id="app" class="row">
+    <div class="col-sm-8 col-sm-offset-2 center-block">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 

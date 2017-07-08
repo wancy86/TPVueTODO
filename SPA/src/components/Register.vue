@@ -1,5 +1,23 @@
 <template>
-  <div><h3>Test vuejs</h3></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="form">
+          <h3 class="text-left">Register</h3>
+          <div class="form-group">
+            <input type="text" class="" placeholder="User name" id="user_name" name="user_name">
+          </div>
+          <div class="form-group">
+            <input type="password" class="" placeholder="Password" id="user_pwd" name="user_pwd">
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-success">OK</button>
+            <a href="#/login">Login >></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

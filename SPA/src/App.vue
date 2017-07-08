@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="row">
-    <div class="col-sm-8 col-sm-offset-2 center-block">
-      <router-view></router-view>
-    </div>
+  <div id="app">
+    <router-view></router-view>
+    <!-- <div class="col-md-8 col-md-offset-2">
+    </div> -->
   </div>
 </template>
 
@@ -17,8 +17,8 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /*text-align: center;*/
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 5px;
 }
 </style>

@@ -16,8 +16,8 @@
             <a style="background-color:#5cb85c;font-weight:bold;" href="#" class="list-group-item"><span class="glyphicon glyphicon-star"></span> {{index+1}}. {{issue.issue_desc}}<button @click="removeIssue(index)" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a>
             <a href="#" class="list-group-item" v-for="(comment,cindex) in issue.comments">{{cindex+1}}. {{comment}} <button @click="removeComment(index,cindex)" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></a>
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="comments">
-              <div style="sursor:pointer" class="input-group-addon">Comment</div>
+              <input type="text" class="form-control" placeholder="new comment" v-model="comment">
+              <div @click="saveComment(index,cindex)" class="input-group-addon btn">Comment</div>
             </div>
           </div>
 
@@ -37,6 +37,7 @@ export default {
       msg: 'Welcome to Your Vue.js home',
       name:'test',  
       issue_desc: '',
+      comment: '',
       active_issue_id: 1,
       issue_list: [{issue_id:1, issue_desc:"test issue", comments:['123','123345','22222']}],
     }
@@ -62,7 +63,7 @@ export default {
       }
       return result;
     },
-    addIssue: function  () {
+    addIssue: function() {
       if(this.issue_desc!='' && this.issueExists()==0){
         this.issue_list.push({
           issue_desc: this.issue_desc,
@@ -70,14 +71,17 @@ export default {
         });
       }
     },
-    removeIssue: function (index) {
+    removeIssue: function(index) {
       var issue = this.issue_list[index];
-      console.log(issue)
+      console.log(issue);
     },
-    removeComment: function (index,cindex) {
+    removeComment: function(index,cindex) {
       var issue = this.issue_list[index];
       var comment = issue.comments[cindex];
-      console.log(comment)
+      console.log(comment);
+    },
+    saveComment: function(index,cindex) {
+      console.log('xxx: ',this.comment);
     }
     
   },

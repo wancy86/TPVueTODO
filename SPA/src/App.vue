@@ -9,10 +9,16 @@
 <script>
 import VueRouter from 'vue-router'
 import Vue from 'vue'
+import axios from 'axios'
+
 Vue.use(VueRouter)
 
 export default {
-  name: 'app'
+  name: 'app',
+  created:function () {
+    // global configure of the base url
+    axios.defaults.baseURL = 'http://www.todo.com:8888/index/';
+  }
 }
 </script>
 

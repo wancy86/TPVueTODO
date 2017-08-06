@@ -42,7 +42,8 @@ export default {
       issue_desc: '',
       comment: '',
       active_issue_id: 1,
-      issue_list: [{issue_id:1, issue_desc:"test issue", comments:[{cid:1,content:"hello"}]}],
+      issue_list: [],
+      // issue_list: [{issue_id:1, issue_desc:"test issue", show_comments: 1, comments:[{cid:1,content:"hello"}]}],
     }
   },
   components: {AppLayout},
@@ -60,15 +61,18 @@ export default {
     },
     addIssue: function() {
       var that = this;
-      if(this.issue_desc!='' && this.issueExists()==0){
-        axios.post('issue/save', {'title':this.issue_desc})
+      var issue_desc = this.issue_desc;
+      if(issue_desc!='' && this.issueExists()==0){
+        axios.post('issue/save', {'title':issue_desc})
         .then(function (resp) {
           that.issue_list.push({
-            issue_desc: that.issue_desc,
-            comments: []
+            issue_desc: issue_desc,
+            comments: [],
+            show_comments: 0
           });
         });
       }
+      this.issue_desc='';
     },
     switch_comments: function (index) {
       var issue = this.issue_list[index];

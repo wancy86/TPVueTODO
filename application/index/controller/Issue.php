@@ -111,6 +111,8 @@ class Issue extends Controller
      */
     public function delete($id)
     {
+        db('comment')->where('iid',$id)->delete();
         return db('issue')->where('iid',$id)->delete();
+
     }
 }

@@ -14,8 +14,9 @@ class Comment extends Controller
      */
     public function index($iid)
     {
+        // return $iid;
         //get the comments list by issue id
-        return json(db('comment')->where('iid',$iid)->field('iid as issue_id, content as comment, entry_date')->select());
+        return json(db('comment')->where('iid',$iid)->field('cid, iid, content as content')->select());
     }
 
 
@@ -37,13 +38,21 @@ class Comment extends Controller
      */
     public function save(Request $request)
     {
-        //
-        db('comment')->data([
-            'iid' => input('issue_id/d'),
-            'content' => input('comment/s'),
-            ])->insert();
-        return 'comment added';
+        if(!input('?post.cid'))
+        {
+            // return new id
+            db('comment')->data([
+                'iid' => input('iid/d'),
+                'content' => input('content/s'),
+                ])->insert();
+            return db('comment')->getLastInsID();
 
+        }else{
+            db('commnet')->where('cid',input('cid/d'))->update([
+                    'content' => input('content/s')
+                ]);
+        }
+        return 'comment added';
     }
 
     /**
@@ -86,8 +95,9 @@ class Comment extends Controller
      * @param  int  $id
      * @return \think\Response
      */
-    public function delete($id)
+    public function delete($cid)
     {
         //
+        return db('comment')->where('cid',$cid)->delete();
     }
 }

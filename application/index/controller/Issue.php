@@ -15,7 +15,7 @@ class Issue extends Controller
     public function index()
     {
         //get the issue list
-        return json(db('issue')->field('iid as issue_id, title as issue_desc')->select());
+        return json(db('issue')->field('iid as issue_id, title as issue_desc, 0 as show_comments,\'\' as comments')->select());
 
         // return 'issue index view';
     }

@@ -18,10 +18,10 @@ export default {
   components: {},
   methods: {
     switchComments: function (index) {
-      window.eventHub.$emit('switchComments', {index: index});
+      this.$emit('switchComments', {index: index});
     },
     removeIssue: function(index) {
-      window.eventHub.$emit('removeIssue',{index:index});
+      this.$emit('removeIssue',{index:index});
     },
   },
   //hook 

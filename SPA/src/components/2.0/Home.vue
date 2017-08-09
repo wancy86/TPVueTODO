@@ -12,8 +12,8 @@
           </div>
           
           <div class="list-group col-sm-12" v-for="(issue,index) in issue_list">
-            <issue :issue="issue" :index="index"></issue>
-            <comment v-show="issue.show_comments" :issue="issue" :index="index"></comment>
+            <issue :issue="issue" :index="index" @switchComments="switchComments" @removeIssue="removeIssue"></issue>
+            <comment v-show="issue.show_comments" :issue="issue" :index="index" @removeComment="removeComment" @saveComment="saveComment"></comment>
           </div>
 
       </div>
@@ -23,12 +23,9 @@
 
 <script>
 import axios from 'axios'
-import Vue from 'Vue'
 import AppLayout from '@/components/app-layout'
 import Issue from '@/components/Issue'
 import Comment from '@/components/Comment'
-
-window.eventHub = new Vue();
 
 export default {
   name: 'home',
@@ -124,24 +121,12 @@ export default {
   },
   //hook 
   created: function  () {
-    //listen event
-    window.eventHub.$on('switchComments',this.switchComments);
-    window.eventHub.$on('removeIssue',this.removeIssue);
-    window.eventHub.$on('saveComment',this.saveComment);
-    window.eventHub.$on('removeComment',this.removeComment);
-
     //get init data
     var that =this;
     axios.get('issue/index')
     .then(function (resp) {
       that.issue_list=resp.data;
     });
-  },
-  beforeDestroy: function () {
-    window.eventHub.$off('switchComments');
-    window.eventHub.$off('removeIssue');
-    window.eventHub.$off('saveComment');
-    window.eventHub.$off('removeComment');
   }
 }
 </script>

@@ -23,10 +23,10 @@ export default {
   components: {},
   methods: {
     removeComment: function(index,cindex) {
-      window.eventHub.$emit('removeComment', {index:index, cindex:cindex});
+      this.$emit('removeComment', {index:index, cindex:cindex});
     },
     saveComment: function(index) {
-      window.eventHub.$emit('saveComment', {index: index, comment: this.comment});
+      this.$emit('saveComment', {index: index, comment: this.comment});
       this.comment="";
     }
   },
